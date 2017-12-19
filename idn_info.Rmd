@@ -1,0 +1,158 @@
+---
+output:
+  html_document:
+    toc: true
+toc_float:
+      collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# The Interactive Data Network
+
+<div class='row'>
+
+<div class="col-md-4 align-self-center">
+
+<center>
+
+<img src="images/idn_logo.png" width="2100px">
+
+</center>
+
+
+</div>
+
+<div class="col-md-8 align-self-center">
+
+Researchers at the University of Oxford are entitled to publish interactive visualisations built using R and Shiny to the institutional shinyapps.io subscription which is maintained by the Interactive Data Network (IDN). 
+
+In addition to hosting visualisations using Shiny, the IDN provides specialist support and advice for researchers in the design, development and publishing of visualisations. Please visit our website at [idn.it.ox.ac.uk](idn.it.ox.ac.uk) or contact us at <researchsupport@it.ox.ac.uk> 
+
+</div>
+
+</div>
+
+# Shiny and the IDN
+
+Researchers may publish Shiny apps to the IDN provided they meet these criteria:
+
+- The app visualises research datasets or findings produced from work undertaken at University of Oxford, including collaborations with other institutions
+- The app pulls data directly from a deposit in a DOI issuing repository (i.e. figshare, OSF, Zenodo) and the DOI is included in the body of the Shiny app
+- The code for the app is deposited at a DOI issuing repository and is cited in the body of the Shiny app.
+- We request that Shiny apps also include a static image that will take the place of the interactive content when the app is no longer supported<sup id="a1">[1](#static-image)</sup>
+
+Here are two common use cases for researchers to create Shiny apps for the IDN:
+
+- A researcher wants an interactive visualisation to accompany a traditional publication in a research journal.
+- A researcher wants an interactive visualisation as part of a project website so that visitors can explore and understand the datasets or findings of the project
+
+## How do I publish to the IDN?
+
+1. Design and create a Shiny app - the IDN can develop a Shiny app for you on a consultation basis if you prefer.
+1. Ensure the Shiny publishes successfully to shinyapps.io (contact the IDN for access to the training IDN account if you wish).
+1. Contact an [IDN Super User](#super-users) in your department/division or <researchsupport@it.ox.ac.uk> and we will publish the Shiny app on your behalf and provide you a link to embed into your website(s).
+
+## How long do shiny apps last?
+
+The IDN has chosen Shiny as our primary tool for creating interactive visualisations of research datasets because they *should* remain functional for a long time. This does not mean that a Shiny app hosted by the IDN will be available **forever**, but it does mean that if an R user downloaded your deposited code the Shiny app will function locally with minimum fuss.
+
+Once an app has been published to the IDN a 3 year count down begins. After 2.5 years we will begin to contact the named academic for the app to ensure that it is behaving as expected, provided the academic remains at Oxford we will happily receive an update for the app and restart the 3 year count down.
+If the author does not respond to our attempts to contact them after 3 years we will begin checking the app ourselves every 2 months to ensure it appears to display correctly. When the app no longer behaves as it should, the IDN will modify the app to display a static image<sup id="a1">[1](#static-image)</sup> and links to the data and code DOIs relevant for the app. Researchers may also contact us at any point during the lifetime of an app to request an update be made. Note that if this update requires dev effort from the IDN we will need to recharge for this work.
+
+<span id="static-image"><b>1</b> We kindly request that your Shiny apps make use of the [navbarPage template](templates_navbarPage.html) as it makes it significantly easier to convert the interactive components of your app into static images and retain the overall structure of your app. It is also highly recommended that you include your preferred static images within your Shiny app in a `static-replacement-imaages` folder.</span>
+
+## IDN Super Users {#super-users}
+
+IDN Super Users are researchers at Oxford who have experience in using and developing Shiny apps and have volunteered some of their time to support others in the use of interactive visualisations to to generate impact and engagement with your research. These folks also have the ability to publish Shiny apps to the IDN on your behalf.
+
+<!--html_preserve-->
+<div class="row">
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/blank-profile-pic.png" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.geog.ox.ac.uk/staff/sabele.html" target="_blank">Simon Abele</a><br />
+    School of Geography and the Environment<br />
+    Physical Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/ed_burn.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="https://www.ndorms.ox.ac.uk/team/edward-burn" target="_blank">Edward Burn</a><br />
+    NDORMS<br />
+    Medical Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/otto-kassi.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="https://www.oii.ox.ac.uk/people/otto-kassi/" target="_blank">Otto Kässi</a><br />
+    Oxford Internet Institute<br />
+    Social Sciences</h6> </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/alfie_abdul_rahman.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.oerc.ox.ac.uk/people/Alfie" target="_blank">Alfie Abdul Rahman</a><br />
+    OeRC<br />
+    Social Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/anas_rana.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.cancercentre.ox.ac.uk/research/resources/bioinformatics/" target="_blank">Anas Rana</a><br />
+    Oncology<br />
+    Medical Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/emmanouela_repapi_profile_pic.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="https://www.linkedin.com/in/emmanouela-repapi-9609b861/" target="_blank">Emmanouela Repapi</a><br />
+    WIMM<br />
+    Medical Sciences</h6> </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/blank-profile-pic.png" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.oxfordmartin.ox.ac.uk/people/565" target="_blank">Maja Založnik</a><br />
+    Institute of Population of Ageing<br />
+    Social Sciences</h6> </center>
+    </div>
+</div>
+<!--/html_preserve-->
+
+## Technical Details of Shiny apps on the IDN
+
+The IDN currently maintains a professional tier subscription to <shinyapps.io> to which Shiny apps are published. Published apps have URLS of the form `livedataoxford.shinyapps.io/unique_key` for historical purposes, and can easily be embedded using iframes, for example:
+
+```{HTML}
+<iframe src="livedataoxford.shinyapps.io/unique_key" width="100%" height="700px"></iframe>
+```
+
+All apps are deployed with default settings unless explicitly requested by researchers, the default settings are:
+
+- Instance Size: 1 Gb (this can be increased to 8Gb)
+- Instance Idle Timeout: 15mins (apps will terminate connections to the server after 15minutes if no inputs change)
+- Max Worker Processes: 3
+- Max Connections: 50 
+- Start Count: 1 (This number should be changed for apps which you expect to receive flash traffic, particularly at first launch)
+
+Our subscription entitles us to a total of 10,000 interactive hours per month across all Shiny apps. Apps that consume more than 5% of this time for two consecutive charging periods (months) will be asked to consider moving their apps if there is less than a 10% buffer of time remaining. The IDN believes these limits are extremely unlikely to be hit in practice, and will actively monitor app usage and plan accordingly. Please note that the IDN is actively investigating additional funding to allow virtualised hosting of a Shiny server that will eventually support SSO access.

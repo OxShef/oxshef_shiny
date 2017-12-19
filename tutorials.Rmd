@@ -1,0 +1,56 @@
+---
+title: "Shiny Tutorials"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: true
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# Shiny Tutorials
+
+Shiny is an R package that allows R users to create interactive web applications without needing to write any HTML, JavaScript or CSS. Building the most basic Shiny apps does not require that much practice or training, however Shiny apps can quickly become more complex and advanced as the list of desired features for your app increases. Advanced functionality typically comes under the following headings:
+
+- Customising appearance of individual elements (colours, size and shape of elements)
+- Customising the behaviour of controls (update control X when control Y is updated)
+- Preventing updates unless a specific control has been changed (do not re-draw a map entirely unless X is changed)
+- Remove/add controls or outputs in a Shiny app dependent on a control
+
+This OxShef website contains a number of tutorials but should not be considered a resource that will get you from never using Shiny before to building advanced Shiny apps with all of the features above. The following external resources are highly recommended:
+
+- [RStudio's dedicated Shiny website](https://shiny.rstudio.com/articles/) contains articles on basic to extremely advanced topics like memory management.
+- Lynda.com is a subscription learning service with an [introductory course on Shiny and interactive presentations](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html) with RMarkdown ([Sheffield researchers](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html?org=shef.ac.uk) and [Oxford researchers](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html?org=ox.ac.uk) should use these links, respectively)
+- Datacamp.com is a subscription learning service with a [course on building web applications with Shiny](https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny).
+
+## Shiny 101
+
+Create a shiny app that has inputs and outputs.
+
+## Structuring a beyond basic Shiny app
+
+
+
+## OxShef Specific Features/Customisations
+
+There are a number of features/customisations made to the OxShef Shiny templates, these tutorials introduce how each of them work separately.
+
+### Flashing and disappearing "loading data"
+
+This does require some CSS
+
+### Optional "Popout button" in menubar
+
+

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Example Page</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
+<link href="site_libs/highcharts-5.0.6/css/motion.css" rel="stylesheet" />
+<script src="site_libs/highcharts-5.0.6/highstock.js"></script>
+<script src="site_libs/highcharts-5.0.6/highcharts-3d.js"></script>
+<script src="site_libs/highcharts-5.0.6/highcharts-more.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/annotations.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/broken-axis.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/data.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/drilldown.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/exporting.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/funnel.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/heatmap.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/map.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/no-data-to-display.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/offline-exporting.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/solid-gauge.js"></script>
+<script src="site_libs/highcharts-5.0.6/modules/treemap.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/annotations.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/draggable-legend.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/draggable-points.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/export-csv.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/grouped-categories.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/motion.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/pattern-fill-v2.js"></script>
+<script src="site_libs/highcharts-5.0.6/plugins/tooltip-delay.js"></script>
+<script src="site_libs/highcharts-5.0.6/custom/reset.js"></script>
+<script src="site_libs/highcharts-5.0.6/custom/symbols-extra.js"></script>
+<script src="site_libs/highcharts-5.0.6/custom/text-symbols.js"></script>
+<link href="site_libs/fontawesome-4.5.0/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/htmlwdgtgrid-1/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="site_libs/highchart-binding-0.5.0/highchart.js"></script>
+
+<meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a href="index.html">OxShef: Shiny</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+
+
+<a class="menuItem" href="deploy-shiny.html">Deploy Shiny where?</a>
+<a class="menuItem" href="tutorials.html">Shiny tutorials</a>
+<a class="menuItem" href="templates.html">Shiny templates</a>
+<a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
+
+        <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
+        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
+
+
+        <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
+        <a class="menuItem gitHubText" href="https://github.com/fixmeyesplease">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 35px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Example Page</h1>
+
+</div>
+
+
+<p>This is an example page taken from <a href="https://oxshef.github.io/oxshef_charts/">OxShef Charts</a> - A guide to different visualisation options for visualising research data</p>
+<div id="charts-and-plots" class="section level1">
+<h1>Charts and Plots</h1>
+<p>Charts and plots are typically used for comparing datasets, plotting raw data or for visualising mathematical expressions. There are many, many different types of charts/plot that serve wildly different purposes.</p>
+<p>For help choosing which chart to use you might consider using these resources:</p>
+<ul>
+<li><a href="http://ft-interactive.github.io/visual-vocabulary/">Financial Times’ Visual Vocabulary</a></li>
+<li><a href="http://chartmaker.visualisingdata.com/">Visualising Data: Chart Directory</a></li>
+</ul>
+<p>We’ve chosen to split our charts up using a similar hierarchy to the FT’s Visual Vocabulary.</p>
+<div id="comparison-ranking-magnitude" class="section level3">
+<h3>Comparison / Ranking / Magnitude</h3>
+
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Categories: For instance, class of animal e.g. mammal or reptile</li>
+   <li>Values: For instance, number of animals of each class</li>
+   </ul>
+   </div>
+   <div class="col-md-4 vcenter">
+<div id="htmlwidget-300a960d6c227cf16309" style="width:300px;height:300px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-300a960d6c227cf16309">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":false,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"group":"group","data":[{"category":"Mammal","subcategory":"human","value":3,"y":3,"name":"Mammal"},{"category":"Mammal","subcategory":"non-human","value":4,"y":4,"name":"Mammal"},{"category":"Reptile","subcategory":"snake","value":6,"y":6,"name":"Reptile"},{"category":"Reptile","subcategory":"iguana","value":8,"y":8,"name":"Reptile"}],"type":"bar"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+   </div>
+   </div>
+   <br>
+
+
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="charts_piecharts.html">Piecharts [tutorial]</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Categories: For instance, species of animal e.g. human or iguana</li>
+   <li>Values: For instance, number of animals of each species</li>
+   </ul>
+   </div>
+   <div class="col-md-4 vcenter">
+<div id="htmlwidget-ba988e8b9519eb011998" style="width:300px;height:300px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ba988e8b9519eb011998">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"value"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":false,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}},"pie":{"dataLabels":{"enabled":false}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"group":"group","data":[{"category":"human","value":3,"y":3,"name":"human"},{"category":"non-human","value":4,"y":4,"name":"non-human"},{"category":"snake","value":6,"y":6,"name":"snake"},{"category":"iguana","value":8,"y":8,"name":"iguana"}],"type":"pie"}],"xAxis":{"type":"category","title":{"text":"category"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+   </div>
+   </div>
+
+</div>
+<div id="correlation" class="section level3">
+<h3>Correlation</h3>
+
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="charts_scatterplots.html">Scatterplots [tutorial]</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>x coordinates: traditionally this is the independent variable, for instance the year a measurement is taken</li>
+   <li>y coordinates: traditionally this is the dependent variable, for instance the value of a measurement in a specific year</li>
+   </ul>
+   </div>
+   <div class="col-md-4 vcenter">
+<div id="htmlwidget-83d0c3b7ce449fbe72fe" style="width:300px;height:300px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-83d0c3b7ce449fbe72fe">{"x":{"hc_opts":{"title":{"text":null},"yAxis":{"title":{"text":"median.life.exp"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":true,"marker":{"enabled":true}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"name":"Africa","data":[{"continent":"Africa","year":1952,"median.life.exp":38.833,"x":1952,"y":38.833},{"continent":"Africa","year":1957,"median.life.exp":40.5925,"x":1957,"y":40.5925},{"continent":"Africa","year":1962,"median.life.exp":42.6305,"x":1962,"y":42.6305},{"continent":"Africa","year":1967,"median.life.exp":44.6985,"x":1967,"y":44.6985},{"continent":"Africa","year":1972,"median.life.exp":47.0315,"x":1972,"y":47.0315},{"continent":"Africa","year":1977,"median.life.exp":49.2725,"x":1977,"y":49.2725},{"continent":"Africa","year":1982,"median.life.exp":50.756,"x":1982,"y":50.756},{"continent":"Africa","year":1987,"median.life.exp":51.6395,"x":1987,"y":51.6395},{"continent":"Africa","year":1992,"median.life.exp":52.429,"x":1992,"y":52.429},{"continent":"Africa","year":1997,"median.life.exp":52.759,"x":1997,"y":52.759},{"continent":"Africa","year":2002,"median.life.exp":51.2355,"x":2002,"y":51.2355},{"continent":"Africa","year":2007,"median.life.exp":52.9265,"x":2007,"y":52.9265}],"type":"scatter"},{"name":"Americas","data":[{"continent":"Americas","year":1952,"median.life.exp":54.745,"x":1952,"y":54.745},{"continent":"Americas","year":1957,"median.life.exp":56.074,"x":1957,"y":56.074},{"continent":"Americas","year":1962,"median.life.exp":58.299,"x":1962,"y":58.299},{"continent":"Americas","year":1967,"median.life.exp":60.523,"x":1967,"y":60.523},{"continent":"Americas","year":1972,"median.life.exp":63.441,"x":1972,"y":63.441},{"continent":"Americas","year":1977,"median.life.exp":66.353,"x":1977,"y":66.353},{"continent":"Americas","year":1982,"median.life.exp":67.405,"x":1982,"y":67.405},{"continent":"Americas","year":1987,"median.life.exp":69.498,"x":1987,"y":69.498},{"continent":"Americas","year":1992,"median.life.exp":69.862,"x":1992,"y":69.862},{"continent":"Americas","year":1997,"median.life.exp":72.146,"x":1997,"y":72.146},{"continent":"Americas","year":2002,"median.life.exp":72.047,"x":2002,"y":72.047},{"continent":"Americas","year":2007,"median.life.exp":72.899,"x":2007,"y":72.899}],"type":"scatter"},{"name":"Asia","data":[{"continent":"Asia","year":1952,"median.life.exp":44.869,"x":1952,"y":44.869},{"continent":"Asia","year":1957,"median.life.exp":48.284,"x":1957,"y":48.284},{"continent":"Asia","year":1962,"median.life.exp":49.325,"x":1962,"y":49.325},{"continent":"Asia","year":1967,"median.life.exp":53.655,"x":1967,"y":53.655},{"continent":"Asia","year":1972,"median.life.exp":56.95,"x":1972,"y":56.95},{"continent":"Asia","year":1977,"median.life.exp":60.765,"x":1977,"y":60.765},{"continent":"Asia","year":1982,"median.life.exp":63.739,"x":1982,"y":63.739},{"continent":"Asia","year":1987,"median.life.exp":66.295,"x":1987,"y":66.295},{"continent":"Asia","year":1992,"median.life.exp":68.69,"x":1992,"y":68.69},{"continent":"Asia","year":1997,"median.life.exp":70.265,"x":1997,"y":70.265},{"continent":"Asia","year":2002,"median.life.exp":71.028,"x":2002,"y":71.028},{"continent":"Asia","year":2007,"median.life.exp":72.396,"x":2007,"y":72.396}],"type":"scatter"},{"name":"Europe","data":[{"continent":"Europe","year":1952,"median.life.exp":65.9,"x":1952,"y":65.9},{"continent":"Europe","year":1957,"median.life.exp":67.65,"x":1957,"y":67.65},{"continent":"Europe","year":1962,"median.life.exp":69.525,"x":1962,"y":69.525},{"continent":"Europe","year":1967,"median.life.exp":70.61,"x":1967,"y":70.61},{"continent":"Europe","year":1972,"median.life.exp":70.885,"x":1972,"y":70.885},{"continent":"Europe","year":1977,"median.life.exp":72.335,"x":1977,"y":72.335},{"continent":"Europe","year":1982,"median.life.exp":73.49,"x":1982,"y":73.49},{"continent":"Europe","year":1987,"median.life.exp":74.815,"x":1987,"y":74.815},{"continent":"Europe","year":1992,"median.life.exp":75.451,"x":1992,"y":75.451},{"continent":"Europe","year":1997,"median.life.exp":76.116,"x":1997,"y":76.116},{"continent":"Europe","year":2002,"median.life.exp":77.5365,"x":2002,"y":77.5365},{"continent":"Europe","year":2007,"median.life.exp":78.6085,"x":2007,"y":78.6085}],"type":"scatter"},{"name":"Oceania","data":[{"continent":"Oceania","year":1952,"median.life.exp":69.255,"x":1952,"y":69.255},{"continent":"Oceania","year":1957,"median.life.exp":70.295,"x":1957,"y":70.295},{"continent":"Oceania","year":1962,"median.life.exp":71.085,"x":1962,"y":71.085},{"continent":"Oceania","year":1967,"median.life.exp":71.31,"x":1967,"y":71.31},{"continent":"Oceania","year":1972,"median.life.exp":71.91,"x":1972,"y":71.91},{"continent":"Oceania","year":1977,"median.life.exp":72.855,"x":1977,"y":72.855},{"continent":"Oceania","year":1982,"median.life.exp":74.29,"x":1982,"y":74.29},{"continent":"Oceania","year":1987,"median.life.exp":75.32,"x":1987,"y":75.32},{"continent":"Oceania","year":1992,"median.life.exp":76.945,"x":1992,"y":76.945},{"continent":"Oceania","year":1997,"median.life.exp":78.19,"x":1997,"y":78.19},{"continent":"Oceania","year":2002,"median.life.exp":79.74,"x":2002,"y":79.74},{"continent":"Oceania","year":2007,"median.life.exp":80.7195,"x":2007,"y":80.7195}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"year"},"categories":null}},"theme":{"chart":{"backgroundColor":"transparent"}},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+   </div>
+   </div>
+
+</div>
+<div id="distribution" class="section level3">
+<h3>Distribution</h3>
+<p>We don’t currently have any tutorials for creating these types of charts, please consider making a <a href="https://github.com/ox-it/OxfordIDN_charts">pull request on GitHub</a>.</p>
+</div>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <h4><a href="oxshef.github.io" target="_blank" style="color:#fff;font-weight:bold">OxShef</a></h4>
+  <div id="logos">
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/OxShef/oxshef_rmd_template" class="footerLogo gitHub"></a>
+    <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
+    <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+---
+title: "Example Page"
+output:
+  html_document:
+    toc: true
+toc_float:
+      collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+
+This is an example page taken from [OxShef Charts](https://oxshef.github.io/oxshef_charts/) - A guide to different visualisation options for visualising research data
+
+# Charts and Plots
+
+Charts and plots are typically used for comparing datasets, plotting raw data or for visualising mathematical expressions. There are many, many different types of charts/plot that serve wildly different purposes.
+
+For help choosing which chart to use you might consider using these resources:
+
+- [Financial Times' Visual Vocabulary](http://ft-interactive.github.io/visual-vocabulary/)
+- [Visualising Data: Chart Directory](http://chartmaker.visualisingdata.com/)
+
+We've chosen to split our charts up using a similar hierarchy to the FT's Visual Vocabulary.
+
+### Comparison / Ranking / Magnitude
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="charts_barcharts.html">Barcharts [tutorial]</a> are very flexible visualisations that allow viewers to quickly compare the relative magnitude/ranking of multiple categories of data. By using grouped or stacked barcharts it is also possible to compare subcategories within each category.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Categories: For instance, class of animal e.g. mammal or reptile</li>
+   <li>Values: For instance, number of animals of each class</li>
+   </ul>
+   </div>
+   <div class="col-md-4 vcenter">
+```{r echo=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~subcategory, ~value,
+  "Mammal", "human", 3,
+  "Mammal", "non-human", 4,
+  "Reptile", "snake", 6,
+  "Reptile", "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "bar",
+    hcaes(
+      x = category,
+      y = value
+    )
+  ) %>%
+  hc_size(width = "300px", height = "300px")
+```
+   </div>
+   </div>
+   <br>
+<!--/html_preserve-->
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="charts_piecharts.html">Piecharts [tutorial]</a> are useful visualisations for breaking down observations into a number of categories, the totals of which sum to 100% of the data. Piecharts are fairly widely panned as poor options for data with many categorisations, it is always possible to replace a piechart with a barchart.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>Categories: For instance, species of animal e.g. human or iguana</li>
+   <li>Values: For instance, number of animals of each species</li>
+   </ul>
+   </div>
+   <div class="col-md-4 vcenter">
+```{r echo=FALSE}
+library("highcharter")
+library("tidyverse")
+my_data <- tribble(
+  ~category, ~value,
+  "human", 3,
+  "non-human", 4,
+  "snake", 6,
+  "iguana", 8
+)
+my_data %>%
+  hchart(
+    type = "pie",
+    hcaes(
+      x = category,
+      y = value
+    )
+  ) %>%
+  hc_plotOptions(pie = list(dataLabels = list(enabled = FALSE))) %>%
+  hc_size(width = "300px", height = "300px")
+```
+   </div>
+   </div>
+<!--/html_preserve-->
+
+
+### Correlation
+
+<!--html_preserve-->
+<div class="row">
+   <div class="col-md-6">
+   <span><a href="charts_scatterplots.html">Scatterplots [tutorial]</a> are very simple visualisations that allow viewers to compare the correlation between two variables, typically between multiple groups of data. Scatterplots may also include trendlines for comparison purposes, however the inclusion of error bars complicates the chart sufficiently to be counted as a separate type of chart.</span>
+   <br>
+   <strong>Required Data:</strong>
+   <ul>
+   <li>x coordinates: traditionally this is the independent variable, for instance the year a measurement is taken</li>
+   <li>y coordinates: traditionally this is the dependent variable, for instance the value of a measurement in a specific year</li>
+   </ul>
+   </div>
+   <div class="col-md-4 vcenter">
+```{r echo=FALSE}
+library("tidyverse")
+library("gapminder")
+library("highcharter")
+gapminder %>%
+  group_by(continent, year) %>%
+  summarise(median.life.exp = median(lifeExp)) %>%
+  hchart(type = "scatter",
+         hcaes(x = year, y = median.life.exp, group = continent)) %>%
+  hc_size(width = "300px", height = "300px")
+```
+   </div>
+   </div>
+<!--/html_preserve-->
+
+### Distribution
+
+We don't currently have any tutorials for creating these types of charts, please consider making a [pull request on GitHub](https://github.com/ox-it/OxfordIDN_charts).

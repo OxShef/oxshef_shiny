@@ -1,0 +1,17 @@
+---
+title: "Templates: navbarPage"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+
+# Why use the navbarPage template?
+
+The navbarPage template is very flexible as it provides a horizontal navigation menu at the top of the app for splitting your visualisations into sections and to add an "about" page. It is highly recommended you use a derivative of this template for publishing to the University of Oxford's IDN as it makes supporting [converting your app to static images](idn_info.html#static-image) simple.
+
