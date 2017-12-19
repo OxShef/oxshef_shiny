@@ -1,0 +1,31 @@
+# Ignore RProject files
+*.Rproj.user
+*.Rhistory
+*.RData
+*.dcf
+*.rds
+*.httr-oauth
+.httr-oauth
+.Rproj.user
+.DS_Store
+
+# CSV files
+*.csv
+*.txt
+*.tab
+
+# PDFs
+*.pdf
+
+# Ignore all xlsx files
+*.xlsx
+*.xls
+
+# Google Analytics Code
+google-analytics.js
+
+# Attempt to be clever about Meeting Notes
+MeetingNotes.Rmd
+
+# Specific File
+!lat-long-points.csv
