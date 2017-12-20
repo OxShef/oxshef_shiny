@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Tutorial: Shiny 101</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a href="index.html">OxShef: Shiny</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+
+
+<a class="menuItem" href="deploy.html">Deploy Shiny where?</a>
+<a class="menuItem" href="tutorials.html">Shiny tutorials</a>
+<a class="menuItem" href="templates.html">Shiny templates</a>
+<a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
+
+        <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
+        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
+
+
+        <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
+        <a class="menuItem gitHubText" href="https://github.com/fixmeyesplease">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 35px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<style type="text/css">
+.title {
+  display: none;
+}
+#disqus_thread {
+  display: none;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Tutorial: Shiny 101</h1>
+
+</div>
+
+
+<div id="what-does-this-tutorial-achieve" class="section level1">
+<h1>What does this tutorial achieve?</h1>
+<p>This tutorial is explicitly and exclusively focused on making a very simple Shiny app that will work on your local computer (the computer you’re typing your code into). <a href="deploy.html">Learn how to deploy Shiny apps to the web here</a>.</p>
+</div>
+<div id="things-you-must-know" class="section level1">
+<h1>Things you must know</h1>
+<p>In order to effectively build Shiny apps you <strong>must</strong> be careful about your directory (folder) structure and what lives in each of your code files; it is very important that Shiny apps should live in separate folders to one another.</p>
+<p>It’s highly recommended that you use RStudio Projects to make your life easier and help write reproducible code (and Shiny apps) <a href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio">here’s an video overview of the benefits of using RStudio Projects</a>.</p>
+</div>
+<div id="our-example-app" class="section level1">
+<h1>Our Example App</h1>
+<div class="row">
+<div class="col-md-5">
+<p>Our example Shiny app is extremely simple and is embedded into this page. It contains two elements:</p>
+<ul>
+<li>A pulldown menu which in Shiny speak is called a “selectInput” and under the hood is actually a <a href="https://selectize.github.io/selectize.js/">selectize.js textbox</a></li>
+<li>A plot of the function x^n, where is the value selected from the pulldown menu</li>
+</ul>
+<p>The code for this Shiny app is on <a href="https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/shiny101">the Github repo</a> and the Shiny app is embedded into this page using a simple iframe, <a href="deploy_shinyapps-io.html">see here for more details</a>.</p>
+</div>
+<div class="col-md-7">
+<iframe src="https://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px">
+</iframe>
+</div>
+</div>
+</div>
+<div id="building-our-shiny-app" class="section level1">
+<h1>Building our Shiny app</h1>
+<p>All of the gubbins (stuff) needed to make Shiny apps work on your machine is provided by the R package <code>shiny</code>, which is installed from CRAN using <code>install.packages(&quot;shiny&quot;)</code>.</p>
+<p>Shiny apps require<sup id="a1"><a href="#two-file-apps">1</a></sup> two files in the Shiny app folder:</p>
+<ul>
+<li><code>ui.R</code>: This is where the “look and feel” of a Shiny app is defined, what is displayed to the user. It is also sometimes called the “client-side” part of the Shiny app</li>
+<li><code>server.R</code>: This is where the work of the Shiny app is done, where R code is evaluated and output is generated that is then sent to the <code>ui.R</code> file to be displayed to the user.</li>
+</ul>
+<p>Create the two files described below in a folder and open either ui.R or server.R in RStudio, the “Run App” button shown below will be displayed - clicking this will “run” the Shiny app on your local machine and you will be able to interact with it.</p>
+<p><img src="images/tutorial_run-app-button.png" width="500px" /></p>
+<div id="ui.r" class="section level2">
+<h2>ui.R</h2>
+<p>Here’s the code for our <code>ui.R</code> file:</p>
+<pre class="r"><code>fluidPage(
+  selectInput(&quot;exponent&quot;, label = &quot;Exponent (i.e. x^n)&quot;, choices = 1:5),
+  plotOutput(&quot;curvePlot&quot;)
+)</code></pre>
+<p>Let’s split our explanation of the file into the three functions used:</p>
+<ul>
+<li>fluidPage</li>
+<li>selectInput</li>
+<li>plotOutput</li>
+</ul>
+<div id="fluidpage" class="section level3">
+<h3>fluidPage</h3>
+<p>There are number of different types of “pages” that can be created with Shiny; <code>fluidPage</code>, <code>navbarPage</code> are two of the most popular. The former, <code>fluidPage</code>, allows us to design a Shiny app that <em>should</em> display nicely on mobile and desktop browsers. The function is provided a sequence of arguments which are shown underneath one another.</p>
+</div>
+<div id="selectinput" class="section level3">
+<h3>selectInput</h3>
+<p><code>selectInput(inputId, label, choices)</code> specifies a pulldown menu (more properly called a selectize menu) with a <code>label</code> and restricted to the <code>choices</code> specified. The <code>inputId</code> argument is the “input variable” that is communicated backwards and forwards between <code>ui.R</code> and <code>server.R</code> while the Shiny app is running.</p>
+<p>In this specific instance, there is a variable we can access in the <code>server.R</code> file: <code>input$exponent</code>.</p>
+<p>It is important to remember that even though our choices are <em>integers</em>, on the server-side (i.e. in the <code>server.R</code> file) the input will be converted to characters.</p>
+<pre class="r"><code>class(input$exponent)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="plotoutput" class="section level3">
+<h3>plotOutput</h3>
+<p><code>plotOutput</code> is designed to receive content from the <code>server.R</code> file generated with the <code>renderPlot</code> function and added to the <code>output</code> object, in this case <code>&quot;curvePlot&quot;</code>. There are lots of different types of content you can generate in <code>server.R</code> to display in <code>ui.R</code> and this always achieved with a pair of <code>*Output</code> and <code>render*</code> functions.</p>
+</div>
+</div>
+<div id="server.r" class="section level2">
+<h2>server.R</h2>
+<p>Here’s the code for our <code>server.R</code> file:</p>
+<pre class="r"><code>function(input, output){
+
+  output$curvePlot &lt;- renderPlot({
+    print(input$exponent)
+    curve(x^as.numeric(input$exponent),
+          from = -3,
+          to = 3,
+          main = paste0(&quot;Plot of x^&quot;, input$exponent),
+          ylab = &quot;y&quot;)
+  })
+
+}</code></pre>
+<p>Let’s split our explanation of the file into the three sections</p>
+<ul>
+<li>function(input, output)</li>
+<li>renderPlot</li>
+<li>print(input$exponent)</li>
+</ul>
+<div id="functioninput-output" class="section level3">
+<h3>function(input, output)</h3>
+<p>Data is transferred backwards and forwards between the <code>ui</code> and <code>server</code> components of the Shiny app via the <code>input</code> and <code>output</code> objects in this function within the <code>server.R</code> file.</p>
+<p>The <code>input</code> object is composed of all the <code>inputIds</code> for your controls (i.e. <code>selectInput</code>) as well as <a href="tutorials_shiny-htmlwidgets.html">inputs created by htmlwidgets in Shiny apps</a>. These values can <strong>only</strong> be accessed in the <code>server.R</code> file, it is not possbb</p>
+</div>
+</div>
+</div>
+<div id="technical-notes" class="section level1">
+<h1>Technical Notes</h1>
+<p><span id="two-file-apps"><b>1</b></span> Technically it is possible to build Shiny apps within a single file called app.R, however it is highly recommended that you split your Shiny app into two files because a single file quickly becomes unwieldy for even moderately “simple” Shiny apps.</p>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <h4><a href="oxshef.github.io" target="_blank" style="color:#fff;font-weight:bold">OxShef</a></h4>
+  <div id="logos">
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/OxShef/oxshef_rmd_template" class="footerLogo gitHub"></a>
+    <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
+    <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
