@@ -29,17 +29,21 @@ Shiny is an R package that allows R users to create interactive web applications
 - Preventing updates unless a specific control has been changed (do not re-draw a map entirely unless X is changed)
 - Remove/add controls or outputs in a Shiny app dependent on a control
 
-This OxShef website contains a number of tutorials but should not be considered a resource that will get you from never using Shiny before to building advanced Shiny apps with all of the features above. The following external resources are highly recommended:
+This OxShef website contains a number of tutorials but should not be considered a resource that will get you from never using Shiny before to building advanced Shiny apps with all of the features above. The following external resources on Shiny are highly recommended:
 
 - [RStudio's dedicated Shiny website](https://shiny.rstudio.com/articles/) contains articles on basic to extremely advanced topics like memory management.
 - Lynda.com is a subscription learning service with an [introductory course on Shiny and interactive presentations](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html) with RMarkdown ([Sheffield researchers](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html?org=shef.ac.uk) and [Oxford researchers](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html?org=ox.ac.uk) should use these links, respectively)
 - Datacamp.com is a subscription learning service with a [course on building web applications with Shiny](https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny).
+
+**All tutorials assume you are using RStudio for writing R code**. RStudio provides a number of features that make it generally easier to develop Shiny apps than using the R Console. 
 
 ## Shiny 101
 
 Create a shiny app that has inputs and outputs.
 
 ## Structuring a beyond basic Shiny app
+
+## Shiny and htmlwidgets
 
 
 
