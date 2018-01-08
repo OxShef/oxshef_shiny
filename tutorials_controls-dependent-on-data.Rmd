@@ -1,0 +1,103 @@
+---
+title: "Tutorial: Controls dependent on data"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: true
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+# What does this tutorial achieve?
+
+This tutorial covers the fairly advanced topic of designing controls for your shiny app that either:
+
+- are dependent on values from datasets
+- are dependent on other input values from the same Shiny app
+
+# Our Example App
+
+Our example app makes use of two data packages:
+
+- `library(gapminder)`: provides socioeconomic data on 142 countries from the www.gapminder.org project
+- `devtools::install_github("ropenscilabs/rnaturalearthhires")`: provides high resolution country borders for mapping
+
+Users of the app are able to view the country and country details by first selecting a continent and then a country, so both controls are dependent on the datasets and the first control subsets the number of available options for the second.
+
+<iframe src="https://trainingidn.shinyapps.io/oxShef_shiny_tutorials_controls-depedendent-on-data/" width="100%" height="400px"></iframe>
+
+The code for this Shiny app is on [the Github repo](https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-depedendent-on-data) and the Shiny app is embedded into this page using a simple iframe, [see here for more details](deploy_shinyapps-io.html). 
+
+# updateSelectInput
+
+The `updateSelectInput` function allows the `server.R` function to re-write the contents of a `selectInput` using information from both the `input` and `output` objects. Let's look at both instances of the `updateSelectInput` function in our template app:
+
+1. selected_continent
+
+```{r, eval=FALSE}
+observe({
+  updateSelectInput(
+    session,
+    "selected_continent",
+    choices = unique(gapminder_countries$continent)
+  )
+})
+```
+
+Here the `selectInput` with the `inputID = "selected_continent"` is updated with the unique values from `gapminder_countries$continent`. The function has been wrapped in `observe` but in this instance its kind of unnecessary, as the expression is only ever going to be evaluated once (when the app loads).
+
+2. selected_country
+
+```{r, eval=FALSE}
+observe({
+  updateSelectInput(
+    session,
+    "selected_country",
+    choices = gapminder_countries %>%
+      filter(continent == input$selected_continent) %>%
+      select(name) %>%
+      .[[1]]
+  )
+})
+```
+
+Here the `observe` **is** necessary as the `selectInput` with the `inputId = "selected_country"` needs to be updated whenever the `input$selected_continent` variable is changed. The `observe` function is *tickled* by any `input$` variable inside of it, and so the list of available countries will be updated when the selected continent changes.
+
+# Values before loading finishes
+
+When a Shiny app first loads everything from the `ui.R` file is displayed on screen and then the `server.R` function is called with all *default input values*. This means for a very short amount of time the `selectInputs` have the values assigned in the `ui.R` file, which are as follows:
+
+```{r, eval=FALSE}
+fluidPage(
+  ...,
+  selectInput("serverside_continent",
+                  "Selected continent:",
+                  choices = ""),
+  ...
+selectInput("selected_country",
+                  "Selected country:",
+                  choices = ""),
+  ...
+)
+```
+
+To prevent `renderLeaflet` from briefly displaying an error because of `input$selected_country == ""` we add the following line to our `server.R` file:
+
+```{r, eval=FALSE}
+if (input$selected_country == "") {
+  return()
+}
+```
+
