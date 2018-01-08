@@ -1,0 +1,50 @@
+---
+title: "Embedding Shiny Apps"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    includes:
+      before_body: [includes/include_header.html, includes/include_header_navpage.html]
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+Shiny apps can be embedded into two different types of places:
+
+- Embedded directly in a website
+- Embedded into an RMarkdown document/presentation
+
+# Embedding into websites
+
+Regardless of where your Shiny app is deployed, embed your the app in your websites by using an iframe. Here's the code that embeds the Shiny app you can see embedded into this website:
+
+```{HTML}
+<iframe src="http://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px"></iframe>
+```
+
+- The iframe is told to span the 100% of the available width of the page.
+- The iframe must be given an appropriate minimum height, in this case 400px.
+
+<iframe src="http://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px"></iframe>
+
+# Embedding into RMarkdown documents
+
+Shiny apps may be embedded into any HTML RMarkdown document, this includes; html_document, shiny_presentation, ioslides_presentation. In order to include Shiny apps you must add `runtime: shiny` into the YAML header:
+
+    ---
+    title: "Habits"
+    output: html_document
+    runtime: shiny
+    ---
+
+Note that these "Shiny RMarkdown documents" can be deployed to shinyapps.io or Shiny Server almost identically to how regular Shiny apps can be deployed. Further documentation on [inline Shiny apps is available here](http://rmarkdown.rstudio.com/authoring_embedded_shiny.html).s
