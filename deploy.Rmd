@@ -19,7 +19,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Deploying Shiny apps to the web
+Running Shiny apps on your local machine (the computer you're typing your code into) requires only RStudio and the `shiny` library to be installed. Deploying your apps to the web allows other to interact with them but requires the Shiny Server application to be installed where your app lives, there are two solutions available to you:
+
+- shinyapps.io: A free or paid service for hosting shiny apps run by RStudio, [read more here]()
+- Shiny Server: Yo
+
+# shinyapps.io
+
+# Shiny Server
+
+
 
 
 
