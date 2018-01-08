@@ -39,7 +39,7 @@ It's highly recommended that you use RStudio Projects to make your life easier a
 Our example Shiny app is extremely simple and is embedded into this page. It contains two elements:
 
 - A pulldown menu which in Shiny speak is called a "selectInput" and under the hood is actually a [selectize.js textbox](https://selectize.github.io/selectize.js/)
-- A plot of the function x^n, where is the value selected from the pulldown menu
+- A plot of the function `x^n`, where `n` is the value selected from the pulldown menu
 
 The code for this Shiny app is on [the Github repo](https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/shiny101) and the Shiny app is embedded into this page using a simple iframe, [see here for more details](deploy_shinyapps-io.html). 
 
@@ -74,10 +74,12 @@ knitr::include_graphics("images/tutorial_run-app-button.png")
 Here's the code for our `ui.R` file:
 
 ```{r, eval=FALSE}
+## Put this code inside of your ui.R file and save the file
 fluidPage(
   selectInput("exponent", label = "Exponent (i.e. x^n)", choices = 1:5),
   plotOutput("curvePlot")
 )
+## Click on the "Run App" button in RStudio when you've written both the ui.R and server.R files
 ```
 
 Let's split our explanation of the file into the three functions used:
@@ -108,14 +110,15 @@ class("1")
 
 ### plotOutput
 
-`plotOutput` is designed to receive content from the `server.R` file generated with the `renderPlot` function and added to the `output` object, in this case `"curvePlot"`. There are lots of different types of content you can generate in `server.R` to display in `ui.R` and this always achieved with a pair of `*Output` and `render*` functions.
+`plotOutput` is designed to receive content from the `server.R` file generated with the `renderPlot` function and added to the `output` object, in this case `"curvePlot"`. There are lots of different types of content you can generate in `server.R` to display in `ui.R` and this is always achieved with a pair of `*Output` and `render*` functions.
 
 ## server.R
 
 Here's the code for our `server.R` file:
 
 ```{r, eval=FALSE}
-function(input, output){
+## Put this code inside of your server.R file and save the file
+function(input, output, session){
 
   output$curvePlot <- renderPlot({
     print(input$exponent)
@@ -127,22 +130,30 @@ function(input, output){
   })
 
 }
+## Click on the "Run App" button in RStudio when you've written both the ui.R and server.R files
 ```
 
 Let's split our explanation of the file into the three sections
 
-- function(input, output)
+- function(input, output, session)
 - renderPlot
 - print(input$exponent)
 
-### function(input, output)
+### function(input, output, session)
 
-Data is transferred backwards and forwards between the `ui` and `server` components of the Shiny app via the `input` and `output` objects in this function within the `server.R` file.
+Information and data is transferred backwards and forwards between the `ui` and `server` components of the Shiny app via the `input` and `output` objects in this function within the `server.R` file.
 
-The `input` object is composed of all the `inputIds` for your controls (i.e. `selectInput`) as well as [inputs created by htmlwidgets in Shiny apps](tutorials_shiny-htmlwidgets.html). These values can **only** be accessed in the `server.R` file, it is not possbb                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+The `input` object is composed of all the `inputIds` for your controls (i.e. `selectInput`) as well as [inputs created by htmlwidgets in Shiny apps](tutorials_shiny-htmlwidgets.html). These values can **only** be accessed in the `server.R` file, it is not possible to create controls in ui.R that are dependent on one another *or* dependent on data loaded into the Shiny app. Please do refer to the dedicated tutorial for [creating interdependent controls and controls dependent on data](tutorials_controls-dependent-on-data.html).
 
+The `session` argument of the function is used for accessing information about the current user of the app, and also allows for a range of advanced features of Shiny apps. It's recommended that you always include the argument by default, as otherwise it might be omitted by accident when it's needed.
 
+### renderPlot
 
+`renderPlot` is designed to prepare a base R or `ggplot2` chart to be displayed in the `ui.R` file via the `plotOutput` function, this is assigned to a named value in the `output` object (in this case `curvePlot`).  There are lots of different types of content you can generate in `server.R` to display in `ui.R` and this is always achieved with a pair of `*Output` and `render*` functions.
+
+### print(input$exponent)
+
+It is often useful to access the current state of an `input` variable in a Shiny app, the simplest (but most naive) solution is to use `print` inside of a `render*` function as this allows values to be displayed in the console of RStudio.
 
 # Technical Notes
 
