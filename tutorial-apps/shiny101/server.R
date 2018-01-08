@@ -1,6 +1,6 @@
 # OxShef Shiny: tutorial-apps/shiny101
 
-function(input, output){
+function(input, output, session){
 
   output$curvePlot <- renderPlot({
     print(input$exponent)
