@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Shiny Tutorials
+<h2>Shiny Tutorials</h2>
 
 Shiny is an R package that allows R users to create interactive web applications without needing to write any HTML, JavaScript or CSS. Building the most basic Shiny apps does not require that much practice or training, however Shiny apps can quickly become more complex and advanced as the list of desired features for your app increases. Advanced functionality typically comes under the following headings:
 
@@ -37,24 +37,47 @@ This OxShef website contains a number of tutorials but should not be considered 
 
 **All tutorials assume you are using RStudio for writing R code**. RStudio provides a number of features that make it generally easier to develop Shiny apps than using the R Console. 
 
-## Shiny 101
+# Shiny 101
 
-Create a shiny app that has inputs and outputs.
+<div class="row">
 
-## Structuring a beyond basic Shiny app
+<div class="col-md-5">
 
-## Shiny and htmlwidgets
+The [Shiny 101 tutorial](tutorials_shiny101.html) introduces the very basics of a Shiny app by teaching you how to build the Shiny app you can see embedded here.
+
+The code for this Shiny app is on [the Github repo](https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/shiny101) and the Shiny app is embedded into this page using a simple iframe, [see here for more details](deploy_shinyapps-io.html). 
+
+</div>
+
+<div class="col-md-7">
+
+<iframe src="https://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px"></iframe>
+
+</div>
+
+</div>
 
 
+# Controls dependent on data
 
-## OxShef Specific Features/Customisations
+Oftentimes controls should be dependent on the data being visualised, for instance restricting a list of countries from a dataset to a specific continent - selected by the user. This is slightly more complicated that you might initially imagine, as the `ui.R` file is by definition ignorant of any values from the `server.R` other than what is provided on the `output` object via `render*` functions.
+
+The following example app is [explained in this tutorial](tutorials_controls-dependent-on-data.html). It makes use of the `gapminder` and `rnaturalearthhires` library to introduce the basics of both **interdependent** and **data dependent** controls. The code for this Shiny app is on [the Github repo](https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-dependent-on-data) and the Shiny app is embedded into this page using a simple iframe, [see here for more details](deploy_shinyapps-io.html). 
+
+<iframe src="https://trainingidn.shinyapps.io/oxShef_shiny_tutorials_controls-depedendent-on-data/" width="100%" height="400px"></iframe>
+
+<!--
+# Shiny and htmlwidgets
+
+
+# OxShef Specific Features/Customisations
 
 There are a number of features/customisations made to the OxShef Shiny templates, these tutorials introduce how each of them work separately.
 
-### Flashing and disappearing "loading data"
+## Flashing and disappearing "loading data"
 
 This does require some CSS
 
-### Optional "Popout button" in menubar
-
+## Optional "Popout button" in menubar
+--!>
 
