@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
 
@@ -39,10 +39,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -239,7 +241,6 @@ div.tocify {
 <a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
 
         <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
-        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
 
 
         <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
@@ -312,7 +313,7 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <h2>How long do shiny apps last?</h2>
 <p>The IDN has chosen Shiny as our primary tool for creating interactive visualisations of research datasets because they <em>should</em> remain functional for a long time. This does not mean that a Shiny app hosted by the IDN will be available <strong>forever</strong>, but it does mean that if an R user downloaded your deposited code the Shiny app will function locally with minimum fuss.</p>
 <p>Once an app has been published to the IDN a 3 year count down begins. After 2.5 years we will begin to contact the named academic for the app to ensure that it is behaving as expected, provided the academic remains at Oxford we will happily receive an update for the app and restart the 3 year count down. If the author does not respond to our attempts to contact them after 3 years we will begin checking the app ourselves every 2 months to ensure it appears to display correctly. When the app no longer behaves as it should, the IDN will modify the app to display a static image<sup id="a1"><a href="#static-image">1</a></sup> and links to the data and code DOIs relevant for the app. Researchers may also contact us at any point during the lifetime of an app to request an update be made. Note that if this update requires dev effort from the IDN we will need to recharge for this work.</p>
-<p><span id="static-image"><b>1</b> We kindly request that your Shiny apps make use of the <a href="templates_navbarPage.html">navbarPage template</a> as it makes it significantly easier to convert the interactive components of your app into static images and retain the overall structure of your app. It is also highly recommended that you include your preferred static images within your Shiny app in a <code>static-replacement-imaages</code> folder.</span></p>
+<p><span id="static-image"><b>1</b> We kindly request that your Shiny apps make use of the <a href="templates_navbarPage.html">navbarPage template</a> as it makes it significantly easier to convert the interactive components of your app into static images and retain the overall structure of your app. It is also highly recommended that you include your preferred static images within your Shiny app in a <code>static-replacement-images</code> folder.</span></p>
 </div>
 <div id="super-users" class="section level2">
 <h2>IDN Super Users</h2>

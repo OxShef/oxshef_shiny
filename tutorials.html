@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
 
@@ -39,10 +39,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -233,7 +235,6 @@ div.tocify {
 <a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
 
         <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
-        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
 
 
         <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
@@ -276,8 +277,9 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 </div>
 
 
-<div id="shiny-tutorials" class="section level1">
-<h1>Shiny Tutorials</h1>
+<h2>
+Shiny Tutorials
+</h2>
 <p>Shiny is an R package that allows R users to create interactive web applications without needing to write any HTML, JavaScript or CSS. Building the most basic Shiny apps does not require that much practice or training, however Shiny apps can quickly become more complex and advanced as the list of desired features for your app increases. Advanced functionality typically comes under the following headings:</p>
 <ul>
 <li>Customising appearance of individual elements (colours, size and shape of elements)</li>
@@ -292,27 +294,39 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <li>Datacamp.com is a subscription learning service with a <a href="https://www.datacamp.com/courses/building-web-applications-in-r-with-shiny">course on building web applications with Shiny</a>.</li>
 </ul>
 <p><strong>All tutorials assume you are using RStudio for writing R code</strong>. RStudio provides a number of features that make it generally easier to develop Shiny apps than using the R Console.</p>
-<div id="shiny-101" class="section level2">
-<h2>Shiny 101</h2>
-<p>Create a shiny app that has inputs and outputs.</p>
+<div id="shiny-101" class="section level1">
+<h1>Shiny 101</h1>
+<div class="row">
+<div class="col-md-5">
+<p>The <a href="tutorials_shiny101.html">Shiny 101 tutorial</a> introduces the very basics of a Shiny app by teaching you how to build the Shiny app you can see embedded here.</p>
+<p>The code for this Shiny app is on <a href="https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/shiny101">the Github repo</a> and the Shiny app is embedded into this page using a simple iframe, <a href="deploy_shinyapps-io.html">see here for more details</a>.</p>
 </div>
-<div id="structuring-a-beyond-basic-shiny-app" class="section level2">
-<h2>Structuring a beyond basic Shiny app</h2>
-</div>
-<div id="shiny-and-htmlwidgets" class="section level2">
-<h2>Shiny and htmlwidgets</h2>
-</div>
-<div id="oxshef-specific-featurescustomisations" class="section level2">
-<h2>OxShef Specific Features/Customisations</h2>
-<p>There are a number of features/customisations made to the OxShef Shiny templates, these tutorials introduce how each of them work separately.</p>
-<div id="flashing-and-disappearing-loading-data" class="section level3">
-<h3>Flashing and disappearing “loading data”</h3>
-<p>This does require some CSS</p>
-</div>
-<div id="optional-popout-button-in-menubar" class="section level3">
-<h3>Optional “Popout button” in menubar</h3>
+<div class="col-md-7">
+<iframe src="https://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px">
+</iframe>
 </div>
 </div>
+</div>
+<div id="controls-dependent-on-data" class="section level1">
+<h1>Controls dependent on data</h1>
+<p>Oftentimes controls should be dependent on the data being visualised, for instance restricting a list of countries from a dataset to a specific continent - selected by the user. This is slightly more complicated that you might initially imagine, as the <code>ui.R</code> file is by definition ignorant of any values from the <code>server.R</code> other than what is provided on the <code>output</code> object via <code>render*</code> functions.</p>
+<p>The following example app is <a href="tutorials_controls-dependent-on-data.html">explained in this tutorial</a>. It makes use of the <code>gapminder</code> and <code>rnaturalearthhires</code> library to introduce the basics of both <strong>interdependent</strong> and <strong>data dependent</strong> controls. The code for this Shiny app is on <a href="https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-dependent-on-data">the Github repo</a> and the Shiny app is embedded into this page using a simple iframe, <a href="deploy_shinyapps-io.html">see here for more details</a>.</p>
+<iframe src="https://trainingidn.shinyapps.io/oxShef_shiny_tutorials_controls-depedendent-on-data/" width="100%" height="400px">
+</iframe>
+<!--
+# Shiny and htmlwidgets
+
+
+# OxShef Specific Features/Customisations
+
+There are a number of features/customisations made to the OxShef Shiny templates, these tutorials introduce how each of them work separately.
+
+## Flashing and disappearing "loading data"
+
+This does require some CSS
+
+## Optional "Popout button" in menubar
+-->
 </div>
 
   </div> <!-- articleBandContent -->

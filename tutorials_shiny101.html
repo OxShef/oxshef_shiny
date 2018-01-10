@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
 
@@ -39,10 +39,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -233,7 +235,6 @@ div.tocify {
 <a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
 
         <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
-        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
 
 
         <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
@@ -292,7 +293,7 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <p>Our example Shiny app is extremely simple and is embedded into this page. It contains two elements:</p>
 <ul>
 <li>A pulldown menu which in Shiny speak is called a “selectInput” and under the hood is actually a <a href="https://selectize.github.io/selectize.js/">selectize.js textbox</a></li>
-<li>A plot of the function x^n, where is the value selected from the pulldown menu</li>
+<li>A plot of the function <code>x^n</code>, where <code>n</code> is the value selected from the pulldown menu</li>
 </ul>
 <p>The code for this Shiny app is on <a href="https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/shiny101">the Github repo</a> and the Shiny app is embedded into this page using a simple iframe, <a href="deploy_shinyapps-io.html">see here for more details</a>.</p>
 </div>
@@ -315,10 +316,12 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <div id="ui.r" class="section level2">
 <h2>ui.R</h2>
 <p>Here’s the code for our <code>ui.R</code> file:</p>
-<pre class="r"><code>fluidPage(
+<pre class="r"><code>## Put this code inside of your ui.R file and save the file
+fluidPage(
   selectInput(&quot;exponent&quot;, label = &quot;Exponent (i.e. x^n)&quot;, choices = 1:5),
   plotOutput(&quot;curvePlot&quot;)
-)</code></pre>
+)
+## Click on the &quot;Run App&quot; button in RStudio when you&#39;ve written both the ui.R and server.R files</code></pre>
 <p>Let’s split our explanation of the file into the three functions used:</p>
 <ul>
 <li>fluidPage</li>
@@ -339,13 +342,14 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 </div>
 <div id="plotoutput" class="section level3">
 <h3>plotOutput</h3>
-<p><code>plotOutput</code> is designed to receive content from the <code>server.R</code> file generated with the <code>renderPlot</code> function and added to the <code>output</code> object, in this case <code>&quot;curvePlot&quot;</code>. There are lots of different types of content you can generate in <code>server.R</code> to display in <code>ui.R</code> and this always achieved with a pair of <code>*Output</code> and <code>render*</code> functions.</p>
+<p><code>plotOutput</code> is designed to receive content from the <code>server.R</code> file generated with the <code>renderPlot</code> function and added to the <code>output</code> object, in this case <code>&quot;curvePlot&quot;</code>. There are lots of different types of content you can generate in <code>server.R</code> to display in <code>ui.R</code> and this is always achieved with a pair of <code>*Output</code> and <code>render*</code> functions.</p>
 </div>
 </div>
 <div id="server.r" class="section level2">
 <h2>server.R</h2>
 <p>Here’s the code for our <code>server.R</code> file:</p>
-<pre class="r"><code>function(input, output){
+<pre class="r"><code>## Put this code inside of your server.R file and save the file
+function(input, output, session){
 
   output$curvePlot &lt;- renderPlot({
     print(input$exponent)
@@ -356,17 +360,27 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
           ylab = &quot;y&quot;)
   })
 
-}</code></pre>
+}
+## Click on the &quot;Run App&quot; button in RStudio when you&#39;ve written both the ui.R and server.R files</code></pre>
 <p>Let’s split our explanation of the file into the three sections</p>
 <ul>
-<li>function(input, output)</li>
+<li>function(input, output, session)</li>
 <li>renderPlot</li>
 <li>print(input$exponent)</li>
 </ul>
-<div id="functioninput-output" class="section level3">
-<h3>function(input, output)</h3>
-<p>Data is transferred backwards and forwards between the <code>ui</code> and <code>server</code> components of the Shiny app via the <code>input</code> and <code>output</code> objects in this function within the <code>server.R</code> file.</p>
-<p>The <code>input</code> object is composed of all the <code>inputIds</code> for your controls (i.e. <code>selectInput</code>) as well as <a href="tutorials_shiny-htmlwidgets.html">inputs created by htmlwidgets in Shiny apps</a>. These values can <strong>only</strong> be accessed in the <code>server.R</code> file, it is not possbb</p>
+<div id="functioninput-output-session" class="section level3">
+<h3>function(input, output, session)</h3>
+<p>Information and data is transferred backwards and forwards between the <code>ui</code> and <code>server</code> components of the Shiny app via the <code>input</code> and <code>output</code> objects in this function within the <code>server.R</code> file.</p>
+<p>The <code>input</code> object is composed of all the <code>inputIds</code> for your controls (i.e. <code>selectInput</code>) as well as <a href="tutorials_shiny-htmlwidgets.html">inputs created by htmlwidgets in Shiny apps</a>. These values can <strong>only</strong> be accessed in the <code>server.R</code> file, it is not possible to create controls in ui.R that are dependent on one another <em>or</em> dependent on data loaded into the Shiny app. Please do refer to the dedicated tutorial for <a href="tutorials_controls-dependent-on-data.html">creating interdependent controls and controls dependent on data</a>.</p>
+<p>The <code>session</code> argument of the function is used for accessing information about the current user of the app, and also allows for a range of advanced features of Shiny apps. It’s recommended that you always include the argument by default, as otherwise it might be omitted by accident when it’s needed.</p>
+</div>
+<div id="renderplot" class="section level3">
+<h3>renderPlot</h3>
+<p><code>renderPlot</code> is designed to prepare a base R or <code>ggplot2</code> chart to be displayed in the <code>ui.R</code> file via the <code>plotOutput</code> function, this is assigned to a named value in the <code>output</code> object (in this case <code>curvePlot</code>). There are lots of different types of content you can generate in <code>server.R</code> to display in <code>ui.R</code> and this is always achieved with a pair of <code>*Output</code> and <code>render*</code> functions.</p>
+</div>
+<div id="printinputexponent" class="section level3">
+<h3>print(input$exponent)</h3>
+<p>It is often useful to access the current state of an <code>input</code> variable in a Shiny app, the simplest (but most naive) solution is to use <code>print</code> inside of a <code>render*</code> function as this allows values to be displayed in the console of RStudio.</p>
 </div>
 </div>
 </div>

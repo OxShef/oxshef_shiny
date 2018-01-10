@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
 
@@ -36,10 +36,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -135,7 +137,6 @@ $(document).ready(function () {
 <a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
 
         <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
-        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
 
 
         <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
@@ -303,8 +304,8 @@ Interactive web apps built with R using Shiny
 <p>This page includes the “State of Open Data 2017” Shiny app that was developed by the <a href="https://idn.it.ox.ac.uk/article/state-of-open-data-survey-2017">IDN as a case study for Figshare</a>, it was built exclusively from R code - and can be <a href="https://github.com/martinjhnhadley/open-data-survey-shiny-app-2017">found on Github</a>.</p>
 <p>This site aims to provide answers to the following questions:</p>
 <ul>
-<li>How can I share Shiny apps with others?</li>
 <li>How do I build Shiny apps?</li>
+<li>How can I share Shiny apps with others?</li>
 <li>Are there any template Shiny apps I can use?</li>
 </ul>
 </div>

@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
 
@@ -39,10 +39,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -239,7 +241,6 @@ div.tocify {
 <a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
 
         <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
-        <a class="menuItem" href="idn_info.html">Sheffield Researchers</a>
 
 
         <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
@@ -282,8 +283,16 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 </div>
 
 
-<div id="deploying-shiny-apps-to-the-web" class="section level1">
-<h1>Deploying Shiny apps to the web</h1>
+<p>Running Shiny apps on your local machine (the computer you’re typing your code into) requires only RStudio and the <code>shiny</code> library to be installed. Deploying your apps to the web allows other to interact with them but requires the Shiny Server application to be installed where your app lives, there are two solutions available to you:</p>
+<ul>
+<li>shinyapps.io: A free or paid service for hosting shiny apps run by RStudio, <a href="">read more here</a></li>
+<li>Shiny Server: Yo</li>
+</ul>
+<div id="shinyapps.io" class="section level1">
+<h1>shinyapps.io</h1>
+</div>
+<div id="shiny-server" class="section level1">
+<h1>Shiny Server</h1>
 </div>
 
   </div> <!-- articleBandContent -->

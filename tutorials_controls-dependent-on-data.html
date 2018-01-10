@@ -11,7 +11,7 @@
 
 
 
-<title>Shiny Templates</title>
+<title>Tutorial: Controls dependent on data</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -140,7 +140,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = false;
+    options.showAndHide = true;
     options.smoothScroll = true;
 
     // tocify
@@ -203,12 +203,6 @@ div.tocify {
   border-radius: 0px;
 }
 
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
 
 </style>
 
@@ -278,34 +272,78 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 
 
-<h1 class="title toc-ignore">Shiny Templates</h1>
+<h1 class="title toc-ignore">Tutorial: Controls dependent on data</h1>
 
 </div>
 
 
-<div id="shiny-templates" class="section level1">
-<h1>Shiny Templates</h1>
-<p>These templates are designed to provide a structured approach to designing scalable and reproducible Shiny apps.</p>
-<div id="basic-templates" class="section level3">
-<h3>Basic Templates</h3>
-<div class="row">
-<div class="col-md-6">
-<span><a href="templates_barcharts.html">The navbarPage template</a> is very flexible as it provides a horizontal navigation menu at the top of the app for splitting your visualisations into sections and to add an “about” page. It is highly recommended you use a derivative of this template for publishing to the University of Oxford’s IDN as it makes supporting <a href="idn_info.html#static-image">converting your app to static images</a> simple.</span> <br> <strong>Required Data:</strong>
+<div id="what-does-this-tutorial-achieve" class="section level1">
+<h1>What does this tutorial achieve?</h1>
+<p>This tutorial covers the fairly advanced topic of designing controls for your shiny app that either:</p>
 <ul>
-<li>
-Categories: For instance, class of animal e.g. mammal or reptile
-</li>
-<li>
-Values: For instance, number of animals of each class
-</li>
+<li>are dependent on values from datasets</li>
+<li>are dependent on other input values from the same Shiny app</li>
 </ul>
 </div>
-<div class="col-md-5 vcenter">
-<img src="images/template_navbarPage.png" width="450px" />
+<div id="our-example-app" class="section level1">
+<h1>Our Example App</h1>
+<p>Our example app makes use of two data packages:</p>
+<ul>
+<li><code>library(gapminder)</code>: provides socioeconomic data on 142 countries from the www.gapminder.org project</li>
+<li><code>devtools::install_github(&quot;ropenscilabs/rnaturalearthhires&quot;)</code>: provides high resolution country borders for mapping</li>
+</ul>
+<p>Users of the app are able to view the country and country details by first selecting a continent and then a country, so both controls are dependent on the datasets and the first control subsets the number of available options for the second.</p>
+<iframe src="https://trainingidn.shinyapps.io/oxShef_shiny_tutorials_controls-depedendent-on-data/" width="100%" height="400px">
+</iframe>
+<p>The code for this Shiny app is on <a href="https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-depedendent-on-data">the Github repo</a> and the Shiny app is embedded into this page using a simple iframe, <a href="deploy_shinyapps-io.html">see here for more details</a>.</p>
 </div>
+<div id="updateselectinput" class="section level1">
+<h1>updateSelectInput</h1>
+<p>The <code>updateSelectInput</code> function allows the <code>server.R</code> function to re-write the contents of a <code>selectInput</code> using information from both the <code>input</code> and <code>output</code> objects. Let’s look at both instances of the <code>updateSelectInput</code> function in our template app:</p>
+<ol style="list-style-type: decimal">
+<li>selected_continent</li>
+</ol>
+<pre class="r"><code>observe({
+  updateSelectInput(
+    session,
+    &quot;selected_continent&quot;,
+    choices = unique(gapminder_countries$continent)
+  )
+})</code></pre>
+<p>Here the <code>selectInput</code> with the <code>inputID = &quot;selected_continent&quot;</code> is updated with the unique values from <code>gapminder_countries$continent</code>. The function has been wrapped in <code>observe</code> but in this instance its kind of unnecessary, as the expression is only ever going to be evaluated once (when the app loads).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>selected_country</li>
+</ol>
+<pre class="r"><code>observe({
+  updateSelectInput(
+    session,
+    &quot;selected_country&quot;,
+    choices = gapminder_countries %&gt;%
+      filter(continent == input$selected_continent) %&gt;%
+      select(name) %&gt;%
+      .[[1]]
+  )
+})</code></pre>
+<p>Here the <code>observe</code> <strong>is</strong> necessary as the <code>selectInput</code> with the <code>inputId = &quot;selected_country&quot;</code> needs to be updated whenever the <code>input$selected_continent</code> variable is changed. The <code>observe</code> function is <em>tickled</em> by any <code>input$</code> variable inside of it, and so the list of available countries will be updated when the selected continent changes.</p>
 </div>
-<p><br></p>
-</div>
+<div id="values-before-loading-finishes" class="section level1">
+<h1>Values before loading finishes</h1>
+<p>When a Shiny app first loads everything from the <code>ui.R</code> file is displayed on screen and then the <code>server.R</code> function is called with all <em>default input values</em>. This means for a very short amount of time the <code>selectInputs</code> have the values assigned in the <code>ui.R</code> file, which are as follows:</p>
+<pre class="r"><code>fluidPage(
+  ...,
+  selectInput(&quot;serverside_continent&quot;,
+                  &quot;Selected continent:&quot;,
+                  choices = &quot;&quot;),
+  ...
+selectInput(&quot;selected_country&quot;,
+                  &quot;Selected country:&quot;,
+                  choices = &quot;&quot;),
+  ...
+)</code></pre>
+<p>To prevent <code>renderLeaflet</code> from briefly displaying an error because of <code>input$selected_country == &quot;&quot;</code> we add the following line to our <code>server.R</code> file:</p>
+<pre class="r"><code>if (input$selected_country == &quot;&quot;) {
+  return()
+}</code></pre>
 </div>
 
   </div> <!-- articleBandContent -->
