@@ -27,9 +27,9 @@ This page includes the "State of Open Data 2017" Shiny app that was developed by
 
 This site aims to provide answers to the following questions:
 
-- How do I build Shiny apps?
-- How can I share Shiny apps with others?
-- Are there any template Shiny apps I can use?
+- [How do I build Shiny apps?](tutorials.html)
+- [How can I share Shiny apps with others?](deploy.html)
+- [Are there any template Shiny apps I can use?](templates.html)
 
 </div>
 
