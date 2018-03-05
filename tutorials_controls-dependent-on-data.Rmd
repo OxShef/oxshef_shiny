@@ -32,13 +32,20 @@ This tutorial covers the fairly advanced topic of designing controls for your sh
 Our example app makes use of two data packages:
 
 - `library(gapminder)`: provides socioeconomic data on 142 countries from the www.gapminder.org project
-- `devtools::install_github("ropenscilabs/rnaturalearthhires")`: provides high resolution country borders for mapping
+- `library(rnaturalearthhires)`: provides high resolution country borders for mapping, note that this package is not available on CRAN and must be installed using `devtools::install_github("ropenscilabs/rnaturalearthhires")`. 
 
 Users of the app are able to view the country and country details by first selecting a continent and then a country, so both controls are dependent on the datasets and the first control subsets the number of available options for the second.
 
-<iframe src="https://trainingidn.shinyapps.io/oxShef_shiny_tutorials_controls-depedendent-on-data/" width="100%" height="400px"></iframe>
+<iframe src="https://trainingidn.shinyapps.io/oxShef_shiny_tutorials_controls-depedendent-on-data/" width="100%" height="650px"></iframe>
 
-The code for this Shiny app is on [the Github repo](https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-depedendent-on-data) and the Shiny app is embedded into this page using a simple iframe, [see here for more details](deploy_shinyapps-io.html). 
+The code for this Shiny app is on [the Github repo](https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-depedendent-on-data) and the app is embedded into this page using a simple iframe, [see here for more details](deploy_shinyapps-io.html).
+
+This tutorial does not walk you through building the app, instead follow these instructions:
+
+1. [Download the shiny app code](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/OxShef/oxshef_shiny/tree/master/tutorial-apps/controls-dependent-on-data).
+1. Open the controls-dependent-on-data.Rproj file from the .zip.
+1. Open the server.R and ui.R files in RStudio and refer to the notes below to understand how the app works.
+
 
 # updateSelectInput
 
@@ -100,4 +107,64 @@ if (input$selected_country == "") {
   return()
 }
 ```
+
+# Can we improve this app?
+
+The steps followed above allow for the country list to be modified by the continent selector, and for the country list to be dependent on the `gapminder` dataset. So in theory, if additional countries were added to the package in the future our app would update nicely.
+
+However, there's still something we could do to improve our app. At the moment, each time `input$selected_country` is changed the entire map is regenerated - the "base map" is reloaded. This is often inefficient if your map contains multiple datasets and only one is changing. Fortunately, it is possible to update the `output$selected_country_map` object via the `leafletProxy` function.
+
+The code below could be substituted for the current implementation of `output$selected_country_map`. For this toy app it doesn't massively improve the experience for the end user, but this gives you a taste of how to design more complicated apps. 
+
+```{r, eval=F}
+  output$selected_country_map <- renderLeaflet({
+    if (input$selected_country == "") {
+      return()
+    }
+
+    leaflet() %>%
+      addTiles()
+
+  })
+
+  observeEvent(input$selected_country,
+               {
+                 if (input$selected_country == "") {
+                   return()
+                 }
+
+                 country_sf <- gapminder_countries %>%
+                   filter(name == input$selected_country)
+
+                 country_bbox <- gapminder_countries %>%
+                   filter(name == input$selected_country) %>%
+                   st_bbox() %>%
+                   as.list()
+
+                 leafletProxy("selected_country_map") %>%
+                   clearShapes() %>%
+                   addPolygons(
+                     data = country_sf,
+                     label = ~ name,
+                     popup = ~ paste("Country:", name,
+                                     "<br>",
+                                     "Population:", pop)
+                   ) %>%
+                   fitBounds(country_bbox$xmin,
+                             country_bbox$ymin,
+                             country_bbox$xmax,
+                             country_bbox$ymax)
+
+               })
+```
+
+
+
+
+
+
+
+
+
+
 

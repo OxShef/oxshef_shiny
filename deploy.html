@@ -131,7 +131,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -240,7 +240,7 @@ div.tocify {
 <a class="menuItem" href="templates.html">Shiny templates</a>
 <a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
 
-        <a class="menuItem" href="idn_info.html">Oxford Researchers</a>
+        <a class="menuItem" href="partners_university-of-oxford.html">Oxford Researchers</a>
 
 
         <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
@@ -283,16 +283,73 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 </div>
 
 
-<p>Running Shiny apps on your local machine (the computer you’re typing your code into) requires only RStudio and the <code>shiny</code> library to be installed. Deploying your apps to the web allows other to interact with them but requires the Shiny Server application to be installed where your app lives, there are two solutions available to you:</p>
+<div id="sharing-shiny-apps-via-the-web" class="section level1">
+<h1>Sharing Shiny apps via the web</h1>
+<p>Running Shiny apps on your local machine (the computer you’re typing your code into) requires only RStudio and the <code>shiny</code> library to be installed. Deploying your apps to the web allows other to interact with them but requires the Shiny Server application to be installed where your app lives, there are three different places that shiny apps can live:</p>
+<div class="row">
+<div class="col-md-4">
+<center>
+<span style="color:#75AADB;font-size:22px">shinyapps.io</span>
+</center>
 <ul>
-<li>shinyapps.io: A free or paid service for hosting shiny apps run by RStudio, <a href="">read more here</a></li>
-<li>Shiny Server: Yo</li>
+<li>Publish apps to the web without any experience of setting up a server</li>
+<li>Both <strong>free</strong> and <strong>paid</strong> subscriptions available</li>
+<li><a href="deploy_shinyapps-io.html">Read more…</a></li>
 </ul>
-<div id="shinyapps.io" class="section level1">
-<h1>shinyapps.io</h1>
 </div>
-<div id="shiny-server" class="section level1">
-<h1>Shiny Server</h1>
+<div class="col-md-4">
+<center>
+<span style="color:#75AADB;font-size:22px">Shiny Server Open Source</span>
+</center>
+<ul>
+<li>Host shiny apps on your own server or VPS</li>
+<li><strong>Free</strong> to use without support</li>
+<li><a href="deploy_open-source-shiny-server.html">Read more…</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<center>
+<span style="color:#75AADB;font-size:22px">Shiny Server Pro</span>
+</center>
+<ul>
+<li>Host shiny apps on your own server or VPS</li>
+<li><strong>Commercial</strong> license (not AGPL) and support available</li>
+<li><a href="deploy_shiny-server-pro.html">Read more…</a></li>
+</ul>
+</div>
+</div>
+<hr>
+</div>
+<div id="embedding-shiny-apps-in-websites" class="section level1">
+<h1>Embedding Shiny apps in websites</h1>
+<p>Independently of where you deploy (or host) your apps, they can easily be embedded into webpages using iframes <a href="deploy_embedding-shiny-apps.html#websites">following this tutorial</a>. It is also possible to embed applications into RMarkdown documents, <a href="deploy_embedding-shiny-apps.html#rmarkdown">as discussed here</a>.</p>
+<hr>
+</div>
+<div id="faq" class="section level1">
+<h1>FAQ</h1>
+<p>It can be challenging at first to understand which of the above options you need for your use case, the following FAQ questions attempt to point you in the right direction</p>
+<div id="i-have-a-shiny-app-in-rstudio-and-i-want-to-push-a-button-for-it-to-appear-online-so-others-can-use-it" class="section level3">
+<h3>I have a Shiny app in RStudio and I want to push a button for it to appear online so others can use it</h3>
+<p>Good news! <a href="deploy_shinyapps-io.html">It’s very simple (and free) to use shinyapps.io to do this</a>. If you have a popular Shiny app, or want to publish more tha 5 at once, you will need to pay for a shinyapps.io subscription.</p>
+</div>
+<div id="i-want-to-publish-a-shiny-app-only-some-people-can-see-i.e.for-it-to-be-password-protected." class="section level3">
+<h3>I want to publish a Shiny app only some people can see, i.e. for it to be password protected.</h3>
+<p>You have two options:</p>
+<ul>
+<li><a href="deploy_shinyapps-io.html#professional-tier-password-protection">Pay for the professional tier shinyapps.io (currently $299/month)</a></li>
+<li><a href="deploy_shiny-server-pro.html">Run your own server or VPS and pay for a Shiny Server Pro license</a></li>
+</ul>
+<p>Deciding between these two options will depend on a number of complicated factors, least of which being “do you know how to setup and run your own server?”.</p>
+</div>
+<div id="i-want-to-have-a-place-my-colleagues-and-i-can-publish-shiny-apps-collaboratively." class="section level3">
+<h3>I want to have a place my colleagues and I can publish Shiny apps collaboratively.</h3>
+<p>You have three options:</p>
+<ul>
+<li><a href="deploy_shinyapps-io.html#professional-tier-password-protection">Pay for the professional tier shinyapps.io (currently $299/month)</a></li>
+<li><a href="deploy_open-source-shiny-server.html">Run your own server or VPS and freely install Shiny Server Open Source</a> -<a href="deploy_shiny-server-pro.html">Run your own server or VPS and pay for a Shiny Server Pro license</a></li>
+</ul>
+<p>Deciding between these two options will depend on a number of complicated factors, least of which being “do you know how to setup and run your own server?”.</p>
+</div>
 </div>
 
   </div> <!-- articleBandContent -->

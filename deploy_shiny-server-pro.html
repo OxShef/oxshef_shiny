@@ -11,7 +11,7 @@
 
 
 
-<title>Embedding Shiny Apps</title>
+<title>Deploying Shiny Apps: Shiny Server Pro</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -140,7 +140,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = false;
+    options.showAndHide = true;
     options.smoothScroll = true;
 
     // tocify
@@ -203,12 +203,6 @@ div.tocify {
   border-radius: 0px;
 }
 
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
 
 </style>
 
@@ -278,36 +272,14 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 
 
-<h1 class="title toc-ignore">Embedding Shiny Apps</h1>
+<h1 class="title toc-ignore">Deploying Shiny Apps: Shiny Server Pro</h1>
 
 </div>
 
 
-<p>Shiny apps can be embedded into two different types of places:</p>
-<ul>
-<li>Embedded directly in a website</li>
-<li>Embedded into an RMarkdown document/presentation</li>
-</ul>
-<div id="websites" class="section level1">
-<h1>Embedding into websites</h1>
-<p>Regardless of where your Shiny app is deployed, embed your the app in your websites by using an iframe. Here’s the code that embeds the Shiny app you can see embedded into this website:</p>
-<pre class="html"><code>&lt;iframe src=&quot;http://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/&quot; width=&quot;100%&quot; height=&quot;400px&quot;&gt;&lt;/iframe&gt;</code></pre>
-<ul>
-<li>The iframe is told to span the 100% of the available width of the page.</li>
-<li>The iframe must be given an appropriate minimum height, in this case 400px.</li>
-</ul>
-<iframe src="http://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px">
-</iframe>
-</div>
-<div id="rmarkdown" class="section level1">
-<h1>Embedding into RMarkdown documents</h1>
-<p>Shiny apps may be embedded into any HTML RMarkdown document, this includes; html_document, shiny_presentation, ioslides_presentation. In order to include Shiny apps you must add <code>runtime: shiny</code> into the YAML header:</p>
-<pre><code>---
-title: &quot;Habits&quot;
-output: html_document
-runtime: shiny
----</code></pre>
-<p>Note that these “Shiny RMarkdown documents” can be deployed to shinyapps.io or Shiny Server almost identically to how regular Shiny apps can be deployed. Further documentation on <a href="http://rmarkdown.rstudio.com/authoring_embedded_shiny.html">inline Shiny apps is available here</a>.s</p>
+<div id="what-does-this-tutorial-achieve" class="section level1">
+<h1>What does this tutorial achieve?</h1>
+<p>This tutorial is explicitly and exclusively focused on making a very simple Shiny app that will work on your local computer (the computer you’re typing your code into). <a href="deploy.html">Learn how to deploy Shiny apps to the web here</a>.</p>
 </div>
 
   </div> <!-- articleBandContent -->

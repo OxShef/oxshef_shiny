@@ -3,8 +3,7 @@ title: "Deploy Shiny where?"
 output:
   html_document:
     toc: true
-    toc_float:
-      collapsed: false
+    toc_depth: 1
     includes:
       before_body: [includes/include_header.html, includes/include_header_navpage.html]
 editor_options: 
@@ -19,16 +18,79 @@ knitr::opts_chunk$set(
 )
 ```
 
-Running Shiny apps on your local machine (the computer you're typing your code into) requires only RStudio and the `shiny` library to be installed. Deploying your apps to the web allows other to interact with them but requires the Shiny Server application to be installed where your app lives, there are two solutions available to you:
+# Sharing Shiny apps via the web
 
-- shinyapps.io: A free or paid service for hosting shiny apps run by RStudio, [read more here]()
-- Shiny Server: Yo
+Running Shiny apps on your local machine (the computer you're typing your code into) requires only RStudio and the `shiny` library to be installed. Deploying your apps to the web allows other to interact with them but requires the Shiny Server application to be installed where your app lives, there are three different places that shiny apps can live:
 
-# shinyapps.io
+<div class="row">
 
-# Shiny Server
+<div class="col-md-4">
+
+<center><span style="color:#75AADB;font-size:22px">shinyapps.io</span></center>
+
+- Publish apps to the web without any experience of setting up a server
+- Both **free** and **paid** subscriptions available
+- [Read more...](deploy_shinyapps-io.html)
+
+</div>
 
 
+<div class="col-md-4">
+
+<center><span style="color:#75AADB;font-size:22px">Shiny Server Open Source</span></center>
+
+- Host shiny apps on your own server or VPS
+- **Free** to use without support
+- [Read more...](deploy_open-source-shiny-server.html)
+
+</div>
+
+<div class="col-md-4">
+
+<center><span style="color:#75AADB;font-size:22px">Shiny Server Pro</span></center>
+
+- Host shiny apps on your own server or VPS
+- **Commercial** license (not AGPL) and support available
+- [Read more...](deploy_shiny-server-pro.html)
+
+</div>
+
+</div>
+
+<hr>
+
+# Embedding Shiny apps in websites
+
+Independently of where you deploy (or host) your apps, they can easily be embedded into webpages using iframes [following this tutorial](deploy_embedding-shiny-apps.html#websites). It is also possible to embed applications into RMarkdown documents, [as discussed here](deploy_embedding-shiny-apps.html#rmarkdown).
+
+<hr>
+
+# FAQ
+
+It can be challenging at first to understand which of the above options you need for your use case, the following FAQ questions attempt to point you in the right direction
+
+### I have a Shiny app in RStudio and I want to push a button for it to appear online so others can use it
+
+Good news! [It's very simple (and free) to use shinyapps.io to do this](deploy_shinyapps-io.html). If you have a popular Shiny app, or want to publish more tha 5 at once, you will need to pay for a shinyapps.io subscription.
+
+### I want to publish a Shiny app only some people can see, i.e. for it to be password protected.
+
+You have two options:
+
+- [Pay for the professional tier shinyapps.io (currently $299/month)](deploy_shinyapps-io.html#professional-tier-password-protection)
+- [Run your own server or VPS and pay for a Shiny Server Pro license](deploy_shiny-server-pro.html)
+
+Deciding between these two options will depend on a number of complicated factors, least of which being "do you know how to setup and run your own server?".
+
+### I want to have a place my colleagues and I can publish Shiny apps collaboratively.
+
+You have three options:
+
+- [Pay for the professional tier shinyapps.io (currently $299/month)](deploy_shinyapps-io.html#professional-tier-password-protection)
+- [Run your own server or VPS and freely install Shiny Server Open Source](deploy_open-source-shiny-server.html)
+-[Run your own server or VPS and pay for a Shiny Server Pro license](deploy_shiny-server-pro.html)
+
+Deciding between these two options will depend on a number of complicated factors, least of which being "do you know how to setup and run your own server?".
 
 
 

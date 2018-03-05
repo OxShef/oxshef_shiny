@@ -24,7 +24,7 @@ Shiny apps can be embedded into two different types of places:
 - Embedded directly in a website
 - Embedded into an RMarkdown document/presentation
 
-# Embedding into websites
+# Embedding into websites {#websites}
 
 Regardless of where your Shiny app is deployed, embed your the app in your websites by using an iframe. Here's the code that embeds the Shiny app you can see embedded into this website:
 
@@ -37,7 +37,7 @@ Regardless of where your Shiny app is deployed, embed your the app in your websi
 
 <iframe src="http://trainingidn.shinyapps.io/OxShef_shiny_tutorials_shiny101/" width="100%" height="400px"></iframe>
 
-# Embedding into RMarkdown documents
+# Embedding into RMarkdown documents {#rmarkdown}
 
 Shiny apps may be embedded into any HTML RMarkdown document, this includes; html_document, shiny_presentation, ioslides_presentation. In order to include Shiny apps you must add `runtime: shiny` into the YAML header:
 
@@ -47,4 +47,4 @@ Shiny apps may be embedded into any HTML RMarkdown document, this includes; html
     runtime: shiny
     ---
 
-Note that these "Shiny RMarkdown documents" can be deployed to shinyapps.io or Shiny Server almost identically to how regular Shiny apps can be deployed. Further documentation on [inline Shiny apps is available here](http://rmarkdown.rstudio.com/authoring_embedded_shiny.html).s
+Note that these "Shiny RMarkdown documents" can be deployed to shinyapps.io or Shiny Server almost identically to how regular Shiny apps can be deployed. Further documentation on [inline Shiny apps is available here](http://rmarkdown.rstudio.com/authoring_embedded_shiny.html).

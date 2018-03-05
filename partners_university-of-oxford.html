@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<meta name="description" content="This is a template site using RMarkdown for the OxShef Project - a collaboration between University of Oxford and University of Sheffield" />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css/rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a href="index.html">OxShef: Shiny</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+
+
+<a class="menuItem" href="deploy.html">Deploy Shiny where?</a>
+<a class="menuItem" href="tutorials.html">Shiny tutorials</a>
+<a class="menuItem" href="templates.html">Shiny templates</a>
+<a class="menuItem" href="htmlwidgets.html">Shiny & htmlwidgets</a>
+
+        <a class="menuItem" href="partners_university-of-oxford.html">Oxford Researchers</a>
+
+
+        <a class="menuItem gitHub" href="https://github.com/fixmeyesplease"></a>
+        <a class="menuItem gitHubText" href="https://github.com/fixmeyesplease">Source on GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 35px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="the-interactive-data-network" class="section level1">
+<h1>The Interactive Data Network</h1>
+<div class="row">
+<div class="col-md-4 align-self-center">
+<center>
+<p><img src="images/idn_logo.png" width="2100px"></p>
+</center>
+</div>
+<div class="col-md-8 align-self-center">
+<p>Researchers at the University of Oxford are entitled to publish interactive visualisations built using R and Shiny to the institutional shinyapps.io subscription which is maintained by the Interactive Data Network (IDN).</p>
+<p>In addition to hosting visualisations using Shiny, the IDN provides specialist support and advice for researchers in the design, development and publishing of visualisations. Please visit our website at <a href="idn.it.ox.ac.uk" class="uri">idn.it.ox.ac.uk</a> or contact us at <a href="mailto:researchsupport@it.ox.ac.uk">researchsupport@it.ox.ac.uk</a></p>
+</div>
+</div>
+</div>
+<div id="shiny-and-the-idn" class="section level1">
+<h1>Shiny and the IDN</h1>
+<p>Researchers may publish Shiny apps to the IDN provided they meet these criteria:</p>
+<ul>
+<li>The app visualises research datasets or findings produced from work undertaken at University of Oxford, including collaborations with other institutions</li>
+<li>The app pulls data directly from a deposit in a DOI issuing repository (i.e. figshare, OSF, Zenodo) and the DOI is included in the body of the Shiny app</li>
+<li>The code for the app is deposited at a DOI issuing repository and is cited in the body of the Shiny app.</li>
+<li>We request that Shiny apps also include a static image that will take the place of the interactive content when the app is no longer supported<sup id="a1"><a href="#static-image">1</a></sup></li>
+</ul>
+<p>Here are two common use cases for researchers to create Shiny apps for the IDN:</p>
+<ul>
+<li>A researcher wants an interactive visualisation to accompany a traditional publication in a research journal.</li>
+<li>A researcher wants an interactive visualisation as part of a project website so that visitors can explore and understand the datasets or findings of the project</li>
+</ul>
+<div id="how-do-i-publish-to-the-idn" class="section level2">
+<h2>How do I publish to the IDN?</h2>
+<ol style="list-style-type: decimal">
+<li>Design and create a Shiny app - the IDN can develop a Shiny app for you on a consultation basis if you prefer.</li>
+<li>Ensure the Shiny publishes successfully to shinyapps.io (contact the IDN for access to the training IDN account if you wish).</li>
+<li>Contact an <a href="#super-users">IDN Super User</a> in your department/division or <a href="mailto:researchsupport@it.ox.ac.uk">researchsupport@it.ox.ac.uk</a> and we will publish the Shiny app on your behalf and provide you a link to embed into your website(s).</li>
+</ol>
+</div>
+<div id="how-long-do-shiny-apps-last" class="section level2">
+<h2>How long do shiny apps last?</h2>
+<p>The IDN has chosen Shiny as our primary tool for creating interactive visualisations of research datasets because they <em>should</em> remain functional for a long time. This does not mean that a Shiny app hosted by the IDN will be available <strong>forever</strong>, but it does mean that if an R user downloaded your deposited code the Shiny app will function locally with minimum fuss.</p>
+<p>Once an app has been published to the IDN a 3 year count down begins. After 2.5 years we will begin to contact the named academic for the app to ensure that it is behaving as expected, provided the academic remains at Oxford we will happily receive an update for the app and restart the 3 year count down. If the author does not respond to our attempts to contact them after 3 years we will begin checking the app ourselves every 2 months to ensure it appears to display correctly. When the app no longer behaves as it should, the IDN will modify the app to display a static image<sup id="a1"><a href="#static-image">1</a></sup> and links to the data and code DOIs relevant for the app. Researchers may also contact us at any point during the lifetime of an app to request an update be made. Note that if this update requires dev effort from the IDN we will need to recharge for this work.</p>
+<p><span id="static-image"><b>1</b> We kindly request that your Shiny apps make use of the <a href="templates_navbarPage.html">navbarPage template</a> as it makes it significantly easier to convert the interactive components of your app into static images and retain the overall structure of your app. It is also highly recommended that you include your preferred static images within your Shiny app in a <code>static-replacement-images</code> folder.</span></p>
+</div>
+<div id="super-users" class="section level2">
+<h2>IDN Super Users</h2>
+<p>IDN Super Users are researchers at Oxford who have experience in using and developing Shiny apps and have volunteered some of their time to support others in the use of interactive visualisations to to generate impact and engagement with your research. These folks also have the ability to publish Shiny apps to the IDN on your behalf.</p>
+
+<div class="row">
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/blank-profile-pic.png" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.geog.ox.ac.uk/staff/sabele.html" target="_blank">Simon Abele</a><br />
+    School of Geography and the Environment<br />
+    Physical Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/ed_burn.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="https://www.ndorms.ox.ac.uk/team/edward-burn" target="_blank">Edward Burn</a><br />
+    NDORMS<br />
+    Medical Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/otto-kassi.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="https://www.oii.ox.ac.uk/people/otto-kassi/" target="_blank">Otto Kässi</a><br />
+    Oxford Internet Institute<br />
+    Social Sciences</h6> </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/alfie_abdul_rahman.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.oerc.ox.ac.uk/people/Alfie" target="_blank">Alfie Abdul Rahman</a><br />
+    OeRC<br />
+    Social Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/anas_rana.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.cancercentre.ox.ac.uk/research/resources/bioinformatics/" target="_blank">Anas Rana</a><br />
+    Oncology<br />
+    Medical Sciences</h6> </center>
+    </div>
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/emmanouela_repapi_profile_pic.jpg" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="https://www.linkedin.com/in/emmanouela-repapi-9609b861/" target="_blank">Emmanouela Repapi</a><br />
+    WIMM<br />
+    Medical Sciences</h6> </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <center><img src="https://idn.web.ox.ac.uk/sites/default/files/idn/images/media/blank-profile-pic.png" style="border-radius: 50%;
+        width: 100px;
+        height: 100px;" width="200px" />
+            <h6><a href="http://www.oxfordmartin.ox.ac.uk/people/565" target="_blank">Maja Založnik</a><br />
+    Institute of Population of Ageing<br />
+    Social Sciences</h6> </center>
+    </div>
+</div>
+
+</div>
+<div id="technical-details-of-shiny-apps-on-the-idn" class="section level2">
+<h2>Technical Details of Shiny apps on the IDN</h2>
+<p>The IDN currently maintains a professional tier subscription to &lt;shinyapps.io&gt; to which Shiny apps are published. Published apps have URLS of the form <code>livedataoxford.shinyapps.io/unique_key</code> for historical purposes, and can easily be embedded using iframes, for example:</p>
+<pre class="html"><code>&lt;iframe src=&quot;livedataoxford.shinyapps.io/unique_key&quot; width=&quot;100%&quot; height=&quot;700px&quot;&gt;&lt;/iframe&gt;</code></pre>
+<p>All apps are deployed with default settings unless explicitly requested by researchers, the default settings are:</p>
+<ul>
+<li>Instance Size: 1 Gb (this can be increased to 8Gb)</li>
+<li>Instance Idle Timeout: 15mins (apps will terminate connections to the server after 15minutes if no inputs change)</li>
+<li>Max Worker Processes: 3</li>
+<li>Max Connections: 50</li>
+<li>Start Count: 1 (This number should be changed for apps which you expect to receive flash traffic, particularly at first launch)</li>
+</ul>
+<p>Our subscription entitles us to a total of 10,000 interactive hours per month across all Shiny apps. Apps that consume more than 5% of this time for two consecutive charging periods (months) will be asked to consider moving their apps if there is less than a 10% buffer of time remaining. The IDN believes these limits are extremely unlikely to be hit in practice, and will actively monitor app usage and plan accordingly. Please note that the IDN is actively investigating additional funding to allow virtualised hosting of a Shiny server that will eventually support SSO access.</p>
+</div>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <h4><a href="oxshef.github.io" target="_blank" style="color:#fff;font-weight:bold">OxShef</a></h4>
+  <div id="logos">
+    <!--<a href="https://twitter.com/rstudio" class="footerLogo twitter"></a>!-->
+    <a href="https://github.com/OxShef/oxshef_rmd_template" class="footerLogo gitHub"></a>
+    <!--<a href="https://www.linkedin.com/company/rstudio-inc" class="footerLogo linkedIn"></a>
+    <a href="https://www.facebook.com/pages/RStudio-Inc/267733656584415" Class="footerLogo facebook"></a>-->
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
