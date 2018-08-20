@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 
-This is an example page taken from [OxShef Charts](https://oxshef.github.io/oxshef_charts/) - A guide to different visualisation options for visualising research data
+This is an example page taken from [OxShef Charts](https://charts.oxshef.io) - A guide to different visualisation options for visualising research data
 
 # Charts and Plots
 
